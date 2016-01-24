@@ -1,0 +1,31 @@
+<div class="text-center">
+    <parties-form [party]="party" [action]="'Save Party'"></parties-form>
+</div>
+<hr>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Location</th>
+            <th width="15%">Actions</th>
+        </tr>
+    </thead>
+    <tbody *ngIf="parties.length">
+        <tr *ngFor="#party of parties">
+            <td>{{ party.name }}</td>
+            <td>{{ party.description }}</td>
+            <td>{{ party.location }}</td>
+            <td>
+                <a class="btn btn-info" [routerLink]="['/PartyDetails', {partyId: party._id}]">Edit</a>
+                <button class="btn btn-danger" (click)="removeParty(party)">Remove</button>
+            </td>
+        </tr>
+    </tbody>
+    <tbody *ngIf="!parties.length">
+        <tr>
+            <td colspan="4" class="text-center">Parties is empty!</td>
+        </tr>
+    </tbody>
+</table>
